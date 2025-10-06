@@ -1,0 +1,308 @@
+<!-- trigger build -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GP Project - Home</title>
+<style>
+    /* Body and background */
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: url('home_image.png') no-repeat center center fixed;
+        background-size: cover;
+        color: #f5f5f5;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Navbar */
+    nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(10, 10, 10, 0.85);
+        backdrop-filter: blur(6px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        transition: all 0.3s ease-in-out;
+    }
+
+    nav a {
+        color: #f5f5f5;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 10px 18px;
+        border-radius: 30px;
+        transition: all 0.3s ease-in-out;
+        letter-spacing: 0.5px;
+    }
+
+    nav a:hover {
+        background: linear-gradient(135deg, #00adb5, #007f89);
+        color: #121212;
+        box-shadow: 0 4px 12px rgba(0, 173, 181, 0.4);
+        transform: translateY(-2px);
+    }
+
+    /* Hamburger for small screens */
+    .menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        margin-left: 15px;
+    }
+
+    .menu-toggle div {
+        width: 25px;
+        height: 3px;
+        background: #f5f5f5;
+        margin: 4px 0;
+        border-radius: 3px;
+        transition: all 0.3s;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+    }
+
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        background: rgba(10, 10, 10, 0.95);
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        text-align: center;
+        padding: 15px 0;
+        gap: 15px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        animation: fadeDown 0.3s ease-in-out;
+    }
+
+    @keyframes fadeDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Accent line */
+    .nav-accent {
+        height: 4px;
+        width: 100%;
+        background: linear-gradient(90deg, #00adb5, #00e0ff);
+        box-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
+    }
+
+    /* Home content wrapper */
+    .home-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 60px 30px;
+        margin: 50px auto;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 25px;
+        box-shadow: 0 15px 50px rgba(0,0,0,0.8);
+        border: 1px solid rgba(255,255,255,0.1);
+        backdrop-filter: blur(4px);
+        max-width: 700px;
+        width: 90%;
+    }
+
+    .home-container h1 {
+        font-size: 3em;
+        margin-bottom: 25px;
+        color: #00e0ff;
+        letter-spacing: 1px;
+        font-weight: 700;
+    }
+
+    .home-container p.subheading {
+        font-size: 1.3em;
+        color: #c0f0ff;
+        margin-bottom: 40px;
+        letter-spacing: 0.5px;
+    }
+
+    .project-info {
+        background: rgba(20, 20, 20, 0.6);
+        padding: 30px 25px;
+        border-radius: 15px;
+        max-width: 500px;
+        text-align: left;
+        color: #e0e0e0;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+        width: 100%;
+    }
+
+    .project-info strong {
+        color: #00adb5;
+        font-size: 1.15em;
+    }
+
+    .project-info ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 10px;
+    }
+
+    .project-info li {
+        margin: 5px 0;
+        padding-left: 18px;
+        position: relative;
+        font-size: 1.1em;
+    }
+
+    .project-info li::before {
+        content: "★";
+        position: absolute;
+        left: 0;
+        color: #00adb5;
+        font-weight: bold;
+    }
+
+    /* Footer */
+    footer {
+        background: rgba(0, 0, 0, 0.85);
+        padding: 15px;
+        text-align: center;
+        border-top: 2px solid #00adb5;
+        font-size: 0.9em;
+        color: #aaa;
+    }
+
+    /* Animations */
+    .fade-in {
+        opacity: 0;
+        animation: fadeInUp 1s ease forwards;
+    }
+
+    .fade-in.delay-1 { animation-delay: 0.3s; }
+    .fade-in.delay-2 { animation-delay: 0.6s; }
+    .fade-in.delay-3 { animation-delay: 0.9s; }
+
+    @keyframes fadeInUp {
+        0% { opacity: 0; transform: translateY(20px);}
+        100% { opacity: 1; transform: translateY(0);}
+    }
+
+    /* Tablet */
+    @media (max-width: 1024px) {
+        .home-container h1 {
+            font-size: 2.5em;
+        }
+        .home-container p.subheading {
+            font-size: 1.2em;
+        }
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+        nav {
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .menu-toggle {
+            display: flex;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .home-container {
+            margin: 25px 15px;
+            padding: 30px 20px;
+        }
+
+        .home-container h1 {
+            font-size: 1.9em;
+        }
+
+        .home-container p.subheading {
+            font-size: 1.05em;
+        }
+
+        .project-info {
+            font-size: 0.95em;
+        }
+
+        footer {
+            font-size: 0.8em;
+        }
+    }
+
+    /* Very small devices */
+    @media (max-width: 480px) {
+        .home-container {
+            padding: 20px 15px;
+        }
+        .home-container h1 {
+            font-size: 1.6em;
+        }
+        .home-container p.subheading {
+            font-size: 1em;
+        }
+        .project-info li {
+            font-size: 0.95em;
+        }
+    }
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="secondary.html">Secondary Research</a>
+        <a href="primary.html">Primary Research</a>
+        <a href="action.html">Evidence of Action</a>
+        <a href="references.html">References</a>
+    </div>
+</nav>
+
+<div class="nav-accent"></div>
+
+<div class="home-container">
+    <h1 class="fade-in">Digital World Project</h1>
+    <p class="subheading fade-in delay-1">Exploring Digital Literacy Among Senior Citizens</p>
+
+    <div class="project-info fade-in delay-2">
+        <p><strong>Topic:</strong> Digital World</p>
+        <p><strong>Issue:</strong> Digital Illiteracy in Senior Citizens</p>
+        <p><strong>Members:</strong></p>
+        <ul>
+            <li>Sarim Sajid – Team Leader</li>
+            <li>Taha Talib</li>
+            <li>Ammar Ateeq</li>
+            <li>Muhammad Dawood</li>
+            <li>Ateeq Ahmed</li>
+            <li>Zohair Mustafa</li>
+        </ul>
+    </div>
+</div>
+
+<footer>
+    © 2025 GP Project | All Rights Reserved
+</footer>
+
+</body>
+</html>

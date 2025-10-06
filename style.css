@@ -1,0 +1,196 @@
+/* === GLOBAL STYLES === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #f5f5f5;
+    background: #121212;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* === NAVBAR === */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* ✅ wrap on small screens */
+    gap: 15px;
+    padding: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+nav a {
+    color: #f5f5f5;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+    font-size: 1em;
+}
+
+nav a:hover, 
+nav a.active {
+    background: linear-gradient(135deg, #00adb5, #007f89);
+    color: #121212;
+    box-shadow: 0 4px 12px rgba(0, 173, 181, 0.4);
+    transform: translateY(-2px);
+}
+
+/* === SECONDARY RESEARCH PAGE === */
+.secondary-container {
+    flex: 1;
+    max-width: 900px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(30, 30, 30, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    text-align: center;
+}
+
+.secondary-container h1 {
+    font-size: 2em;
+    color: #00e0ff;
+    margin-bottom: 15px;
+    text-shadow: 0 0 12px rgba(0,224,255,0.6);
+}
+
+/* === TABS === */
+.tab-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.tab-btn {
+    background: #1e1e1e;
+    color: #f5f5f5;
+    border: 1px solid #333;
+    padding: 10px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95em;
+}
+
+.tab-btn:hover {
+    background: #00adb5;
+    color: #121212;
+    box-shadow: 0 4px 12px rgba(0,173,181,0.4);
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, #00adb5, #007f89);
+    color: #121212;
+}
+
+/* === TAB CONTENT === */
+.tab-content {
+    display: none;
+    text-align: left;
+    overflow-y: visible;   /* no squishing */
+    animation: fadeIn 0.5s ease-in-out;
+    line-height: 1.6;
+    font-size: 1em;
+    max-height: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* === FOOTER === */
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #0a0a0a;
+    color: #777;
+    font-size: 0.9em;
+}
+
+/* === RESPONSIVE FIXES === */
+
+/* Tablets (portrait & landscape) */
+@media screen and (max-width: 1024px) {
+    .secondary-container {
+        max-width: 95%;
+        padding: 18px;
+    }
+    nav {
+        gap: 10px;
+    }
+    nav a {
+        font-size: 0.95em;
+        padding: 7px 12px;
+    }
+}
+
+/* Phones (large) */
+@media screen and (max-width: 768px) {
+    .secondary-container {
+        margin: 10px;
+        padding: 15px;
+        width: 95%;
+    }
+
+    .secondary-container h1 {
+        font-size: 1.6em;
+    }
+
+    .tab-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .tab-btn {
+        width: 100%;
+        font-size: 1em;
+        padding: 12px;
+    }
+
+    .tab-content {
+        font-size: 0.95em;
+    }
+}
+
+/* Phones (small) */
+@media screen and (max-width: 480px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    nav a {
+        font-size: 0.85em;
+        padding: 6px 10px;
+    }
+
+    .secondary-container h1 {
+        font-size: 1.4em;
+    }
+
+    .tab-btn {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+    .tab-content {
+        font-size: 0.9em;
+    }
+}
